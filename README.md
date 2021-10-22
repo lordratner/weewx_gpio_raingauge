@@ -11,7 +11,9 @@ Extra service for supporting wired rain gauges connected through GPIO pins on We
 
 Copy gpio_rain_service.py into your user folder: /usr/share/weewx/user/
 
-Open weewx.conf: ```sudo nano /etc/weewx/weewx.conf```
+```wget https://github.com/lordratner/weewx_gpio_raingauge/blob/main/gpio_rain_service.py -O /usr/share/weewx/user/gpio_rain_service.py```
+
+Open weewx.conf: ```nano /etc/weewx/weewx.conf```
 
 Go to the [Engine] --> [[Services]] section and find ```"data-services = "```
 
