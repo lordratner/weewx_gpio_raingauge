@@ -36,7 +36,7 @@ Now add a section for the configuration variables and update them for your setup
 ```
 [GPIORainGauge]
 
-    #Enter the size of your rain gauge's tipping bucket or spoon in mm
+    #Enter the size of your rain gauge's tipping bucket or spoon
     bucket_size = .1
 
     #GPIO pin for rain gauge wire. Other wire goes to GND
