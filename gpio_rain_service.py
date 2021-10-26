@@ -36,7 +36,7 @@ class RainGauge(object):
     def __init__(self, **d):
         """ Initialize Object. """
         # Read from config the bucket size
-        self.bucket_size = float(d.get('bucket_size'))  # in mm
+        self.bucket_size = float(d.get('bucket_size'))
         self.rain_count = 0
         # Read from config which pin to use on the RPI GPIO
         self.rain_sensor = Button(d.get('pin_number'))
@@ -46,8 +46,7 @@ class RainGauge(object):
         self.rain_count = self.rain_count + 1
         
     def get_rainfall(self):
-        """ Returns rainfall in cm. """
-        rainfall = (self.rain_count * self.bucket_size) / 10.0
+        rainfall = (self.rain_count * self.bucket_size)
         self.reset_rainfall()
         return rainfall
 
