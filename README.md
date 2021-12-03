@@ -9,9 +9,9 @@ Extra service for supporting wired rain gauges connected through GPIO pins on We
 
 ### Installation Instructions
 
-Copy gpio_rain_service.py into your user folder: /usr/share/weewx/user/
+(Your folders may vary depending on the installation. This uses the Debian installation. Sudo may be required for certain commands)
 
-```wget https://github.com/lordratner/weewx_gpio_raingauge/blob/main/gpio_rain_service.py -O /usr/share/weewx/user/gpio_rain_service.py```
+Copy gpio_rain_service.py into your user folder: /usr/share/weewx/user/
 
 Open weewx.conf: ```nano /etc/weewx/weewx.conf```
 
@@ -36,8 +36,8 @@ Now add a section for the configuration variables and update them for your setup
 ```
 [GPIORainGauge]
 
-    #Enter the size of your rain gauge's tipping bucket or spoon
-    bucket_size = .01
+    #Enter the size of your rain gauge's tipping bucket or spoon *in milimeters*
+    bucket_size = .254
 
     #GPIO pin for rain gauge wire. Other wire goes to GND
     pin_number = 6
@@ -45,7 +45,9 @@ Now add a section for the configuration variables and update them for your setup
     #You need to go into the driver for the rest of your hardware and comment out the 'Rain =' line.
 ```
 
-This is the hardest part, you need to open your driver and comment out the rain reporting. This will be different for every driver, but you are looking for the line ```rain = ```. Just comment it out: ```#rain = ```.  The drivers are located in either ```/usr/share/weewx/weewx/drivers``` (changes here will not survive a WeeWx upgrade) or ```/usr/share/weewx/user``` (Changes here will be preserved in an upgrade).
+This is the hardest part, depending on the driver, you may need to open your driver and comment out the rain reporting. This will be different for every driver, but in the simulator you are looking for the line ```rain = ```. Just comment it out: ```#rain = ```.  The drivers are located in either ```/usr/share/weewx/weewx/drivers``` (changes here will not survive a WeeWx upgrade) or ```/usr/share/weewx/user``` (Changes here will be preserved in an upgrade).
+
+For the GW1100 driver, if you have no rain equipment (that communicates with the GW1000/GW1100), no changes are required. If you are replacing a rain sensor with a wired gauge, you'll need to disable the rain sensor in the GW1100 setup. If you can't do that, you need to go into the driver and disable the rain functions, which is difficult. 
 
 Now just restart WeeWx: ```sudo systemctl restart weewx```
 
