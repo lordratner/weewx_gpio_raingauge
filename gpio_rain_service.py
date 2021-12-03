@@ -27,7 +27,8 @@ class GpioRainGauge(StdService):
     # Get Rainfall data
     def get_rain(self, event):
         rainfall = round(self.gauge.get_rainfall(),5)
-        syslog.syslog(syslog.LOG_DEBUG, "GPIORainGauge: found rain value of %s cm" % rainfall)
+        if rainfall != 0.00000:
+            syslog.syslog(syslog.LOG_DEBUG, "GPIORainGauge: found rain value of %s mm" % rainfall)
         event.packet['rain'] = float(rainfall)
 
 class RainGauge(object):
