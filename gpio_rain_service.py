@@ -30,6 +30,10 @@ class GpioRainGauge(StdService):
         if rainfall != 0.00000:
             syslog.syslog(syslog.LOG_DEBUG, "GPIORainGauge: found rain value of %s mm" % rainfall)
         event.packet['rain'] = float(rainfall)
+        
+    # Cleanup the gpio pin if the Engine is shut down, or GPIOZero will throw error GPIOPinInUse when engine restarts
+    def ShutDown(self):
+        self.gauge.release_pin()
 
 class RainGauge(object):
     """ Object that represents a Wired Rain Gauge. """
@@ -53,3 +57,6 @@ class RainGauge(object):
 
     def reset_rainfall(self):
         self.rain_count = 0
+        
+    def release_pin(self):
+        self.rain_sensor.close()
