@@ -34,6 +34,7 @@ class GpioRainGauge(StdService):
     # Cleanup the gpio pin if the Engine is shut down, or GPIOZero will throw error GPIOPinInUse when engine restarts
     def ShutDown(self):
         self.gauge.release_pin()
+        syslog.syslog(syslog.LOG_DEBUG, "GPIORainGauge: ShutDown() called")
 
 class RainGauge(object):
     """ Object that represents a Wired Rain Gauge. """
