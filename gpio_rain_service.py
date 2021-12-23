@@ -60,3 +60,4 @@ class RainGauge(object):
         
     def release_pin(self):
         self.rain_sensor.close()
+        syslog.syslog(syslog.LOG_DEBUG, "Releasing pin in gpiozero")
