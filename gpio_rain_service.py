@@ -36,7 +36,7 @@ class GpioRainGauge(StdService):
         event.packet['rain'] = float(rainfall)
         
     # Cleanup the gpio pin if the Engine is shut down, or GPIOZero will throw error GPIOPinInUse when engine restarts
-    def ShutDown(self):
+    def shutDown(self):
         self.gauge.release_pin()
         
 class RainGauge(object):
